@@ -21,7 +21,7 @@ const getFieldsOnRecords = (appId, queryCondition, fields, limit, offset) => {
   });
 }
 
-const getFieldsOnAllRecords = (appId, queryCondition, fields) => {
+export const getFieldsOnAllRecords = (appId, queryCondition, fields) => {
   try {
     if (!(appId && appId.indexOf(',') == -1 && /^\+?(0|[1-9]\d*)$/.test(appId))) {
       throw new Error('Invalid input for appId.');
@@ -32,7 +32,7 @@ const getFieldsOnAllRecords = (appId, queryCondition, fields) => {
     if (!(fields && fields instanceof Array && fields.length > 0)) {
       throw new Error('Invalid input for fields.');
     }
-    return new Promise((resolve) => {
+    return new Promise(async (resolve) => {
       let offset = 0;
       const fieldsOnAllRecords = [];
       do {
